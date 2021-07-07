@@ -1,25 +1,24 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { Navbar } from './components/Navbar';
+import { TopClock } from './components/TopClock';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Timer from './components/Timer';
+import Metronome from './components/Metronome';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <Router>
+   <div className="App">
+       <TopClock/>
+       <Switch>
+            <Route exact path="/timer" component={Timer} />
+            <Route path="/metronome" component={Metronome} />
+          </Switch>
+       <Navbar/>
     </div>
+    </Router>
+ 
   );
 }
 
