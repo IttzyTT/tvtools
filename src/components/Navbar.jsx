@@ -35,7 +35,9 @@ const NavContainer = styled.div`
     bottom: 0;
     left: 0;
     width: 100%;
+    height: 6rem;
     color: #5a5959;
+    box-shadow: -1px -1px 2px #aaaaaa;
   }
   .navList {
     display: flex;
@@ -55,11 +57,11 @@ const NavContainer = styled.div`
     font-size: 2.1rem;
   }
   .metronome {
-    margin-left: 16px;
+    margin-left: 20px;
     margin-bottom: 3px;
   }
   p {
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     text-align: center;
     margin-top: -2px;
   }
