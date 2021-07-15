@@ -12,8 +12,6 @@ export default function StopWatchTimer({ time }) {
 }
 
 const Time = styled.div`
-  width: 100%;
-
   margin-top: 1.3rem;
 
   .digits {

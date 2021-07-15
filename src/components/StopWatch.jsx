@@ -41,6 +41,7 @@ export default function StopWatch() {
     <StopContainer>
       <div className="stopWatchContainer">
         <div className="timeLeft">
+          <h3 className="label">Stopwatch:</h3>
           <ControlButtons
             active={isActive}
             isPaused={isPaused}
@@ -63,18 +64,21 @@ const StopContainer = styled.div`
   width: 100%;
   .label {
     font-weight: 400;
+    font-size: 12px;
   }
   //Break time
   .stopWatchContainer {
     height: 4.6rem;
     display: flex;
+    justify-content: space-between;
     padding: 0rem 0.5rem;
     border-bottom: 1px solid #b1b0b0b3;
   }
   .timeLeft {
-    width: 38rem;
+    display: flex;
+    align-items: center;
   }
   .timeRight {
-    width: 100%;
+    width: 8.8rem;
   }
 `;

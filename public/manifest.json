@@ -4,8 +4,8 @@
   "icons": [
     {
       "src": "./icons/android-chrome-192x192.png",
-      "sizes":"196x196",
-      "type":"image/png",
+      "sizes": "196x196",
+      "type": "image/png",
       "purpose": "any maskable"
     },
     {
@@ -19,7 +19,7 @@
       "sizes": "32x32",
       "type": "image/png"
     },
- 
+
     {
       "src": "./icons/android-chrome-192x192.png",
       "type": "image/png",

@@ -36,7 +36,7 @@ function BreakTimer() {
     var seconds = Math.ceil(divisor_for_seconds);
 
     // Adds zero infront of seconds
-    minutes = minutes < 10 ? '0' + minutes + ':' : minutes;
+    minutes = minutes < 10 ? '0' + minutes : minutes;
     seconds = seconds < 10 ? '0' + seconds : seconds;
 
     return {
@@ -69,7 +69,7 @@ function BreakTimer() {
     }
   }, [count]);
 
-  const timer = `${minute}${second}`;
+  const timer = `${minute}:${second}`;
 
   return (
     <BreakContainer>
@@ -97,6 +97,7 @@ const BreakContainer = styled.div`
   width: 100%;
   .label {
     font-weight: 400;
+    font-size: 12px;
   }
   //Break time
   .breakTimeContainer {
@@ -108,7 +109,12 @@ const BreakContainer = styled.div`
   }
   .breakeInput {
     width: 2rem;
-    margin-right: 5px;
+    height: 1.7rem;
+    margin: 0px 5px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 1rem;
+    border: none;
   }
   .breakBtn {
     height: 1.9rem;
@@ -119,6 +125,10 @@ const BreakContainer = styled.div`
     padding: 2px 15px;
     font-size: 1rem;
     cursor: pointer;
+  }
+  .timeLeft {
+    display: flex;
+    align-items: center;
   }
   .breakTime {
     font-size: 1.5rem;
