@@ -9,16 +9,15 @@ import Metronome from './components/Metronome';
 function App() {
   return (
     <Router>
-   <div className="App">
-       <TopClock/>
-       <Switch>
-            <Route exact path="/timer" component={Timer} />
-            <Route path="/metronome" component={Metronome} />
-          </Switch>
-       <Navbar/>
-    </div>
+      <div className="App">
+        <TopClock />
+        <Switch>
+          <Route exact path="/timer" component={Timer} />
+          <Route path="/metronome" component={Metronome} />
+        </Switch>
+        <Navbar />
+      </div>
     </Router>
- 
   );
 }
 
