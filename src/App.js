@@ -10,12 +10,14 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <TopClock />
-        <Switch>
-          <Route exact path="/timer" component={Timer} />
-          <Route path="/metronome" component={Metronome} />
-        </Switch>
-        <Navbar />
+        <div className="mainContainer">
+          <TopClock />
+          <Switch>
+            <Route exact path="/timer" component={Timer} />
+            <Route path="/metronome" component={Metronome} />
+          </Switch>
+          <Navbar />
+        </div>
       </div>
     </Router>
   );

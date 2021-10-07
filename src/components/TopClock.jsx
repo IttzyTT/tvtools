@@ -23,17 +23,16 @@ export const TopClock = () => {
 };
 
 const ClockContainer = styled.div`
-  position: fixed;
-  z-index: 99;
-  top: 0;
-  left: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.637), rgba(255, 255, 255, 0.308));
-  width: 100%;
   height: 5.7rem;
+  border-radius: 5px 5px 0px 0px;
+  @media screen and (max-width: 768px) {
+    border-radius: 0px;
+  }
 
   h1 {
     color: #19263be1;
