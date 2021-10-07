@@ -4,21 +4,28 @@ import styled from 'styled-components';
 function OnAirTimer() {
   const [countingDown, setCountingDown] = useState(false);
   const [time, setTime] = useState();
-  const [remainingTime, setRemainingTime] = useState('0:00:00');
+  const [remainingTime, setRemainingTime] = useState('');
 
   useEffect(() => {
     if (countingDown) {
-      let intervalId = setInterval(() => {
+      let intervalId;
+      let timeoutId;
+      intervalId = setInterval(() => {
         const timeLeft = getRemainingTime(time);
-        if (timeLeft == undefined) {
+        if (timeLeft === undefined || timeLeft === '00') {
           setRemainingTime('On Air');
           setCountingDown(false);
+
+          timeoutId = setTimeout(() => {
+            setRemainingTime('');
+          }, 3000);
         } else {
           setRemainingTime(timeLeft);
         }
-      }, 1000);
+      }, 400);
       return () => {
         clearInterval(intervalId);
+        clearTimeout(timeoutId);
       };
     }
   });
@@ -55,14 +62,18 @@ function OnAirTimer() {
     let minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
     let seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
-    if (hours > 0) return hours + ':' + minutes + ':' + seconds;
-    if (minutes > 0) return minutes + ':' + seconds;
-    if (seconds >= 0) return seconds;
+    if (hours > 0) return `${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
+    if (minutes > 0) return `${pad(minutes)}:${pad(seconds)}`;
+    if (seconds >= 0) return pad(seconds);
   };
 
   const onTimeChanged = (e) => {
     setTime(e.target.value);
     setCountingDown(true);
+  };
+
+  const pad = (n) => {
+    return n > 9 ? n : '0' + n;
   };
   return (
     <TimerContainer>
@@ -80,6 +91,8 @@ function OnAirTimer() {
 }
 
 export default OnAirTimer;
+
+// -----------------------------------------------------------------------------------------------------
 // Styleing
 const TimerContainer = styled.div`
   width: 100%;
@@ -90,6 +103,7 @@ const TimerContainer = styled.div`
 
   // On air time
   .onAirContainer {
+    height: 4.6rem;
     display: flex;
     justify-content: space-between;
     padding: 0rem 0.5rem;

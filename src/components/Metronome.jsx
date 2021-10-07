@@ -29,7 +29,7 @@ function Metronome() {
     const noteElements = document.querySelectorAll('#metronome span');
 
     Array.from(noteElements).forEach((element, index) => {
-      if (index == currentNoteIndex) {
+      if (index === currentNoteIndex) {
         element.style.transform = 'translate(0, -12px)';
         element.style.background = '#fdc04e';
         element.style.border = '#fdc04e 1px solid';

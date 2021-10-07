@@ -31,7 +31,7 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": "/index.html",
+  "start_url": "/index.html/timer",
   "display": "standalone",
   "theme_color": "#3d4650",
   "background_color": "#3d4650"

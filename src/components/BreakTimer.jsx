@@ -4,85 +4,80 @@ import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 
 function BreakTimer() {
-  const [count, setCount] = useState(''); // Input number converted to seconds
-  const [input, setinput] = useState('');
-  const [minute, setMinute] = useState('');
-  const [second, setSecond] = useState('');
-  const Myswal = withReactContent(Swal);
+  const [countingDown, setCountingDown] = useState(false);
+  const [time, setTime] = useState();
+  const [mins, setMins] = useState();
+  const [remainingTime, setRemainingTime] = useState('');
 
-  // takes the input value and sets the state
-  const onChange = (e) => {
-    setinput(e.target.value);
-  };
-
-  // looks for input value and sets the timer
-  const handleOnClick = () => {
-    if (input === '') {
-      Myswal.fire({
-        title: 'Break time',
-        text: 'You need to set a break time!',
-        icon: 'warning',
-        confirmButtonText: 'oh, okey',
-      });
-    }
-    setCount(input * 60);
-  };
-
-  // seconds converter
-  function secondsToTime(secs) {
-    var divisor_for_minutes = secs % (60 * 60);
-    var minutes = Math.floor(divisor_for_minutes / 60);
-    var divisor_for_seconds = divisor_for_minutes % 60;
-    var seconds = Math.ceil(divisor_for_seconds);
-
-    // Adds zero infront of seconds
-    minutes = minutes < 10 ? '0' + minutes : minutes;
-    seconds = seconds < 10 ? '0' + seconds : seconds;
-
-    return {
-      m: minutes,
-      s: seconds,
-    };
-  }
-
-  // Timer logic counts down, and resets everything
   useEffect(() => {
-    if (count >= 0) {
-      const secondsLeft = setInterval(() => {
-        setCount(count - 1);
-        let timeLeft = secondsToTime(count);
-        setMinute(timeLeft.m);
-        setSecond(timeLeft.s);
-      }, 1000);
+    if (countingDown) {
+      let intervalId;
+      let timeoutId;
+      intervalId = setInterval(() => {
+        const timeLeft = getRemainingTime();
+        if (timeLeft == undefined || timeLeft == '00') {
+          setRemainingTime('On Air');
+          setCountingDown(false);
 
-      return () => clearInterval(secondsLeft);
+          timeoutId = setTimeout(() => {
+            setRemainingTime('');
+          }, 3000);
+        } else {
+          setRemainingTime(timeLeft);
+        }
+      }, 400);
+      return () => {
+        clearInterval(intervalId);
+        clearTimeout(timeoutId);
+      };
     }
-    if (count < 0) {
-      setMinute('');
-      setSecond('');
+  });
 
-      setTimeout(() => {
-        setinput('');
-        setMinute('');
-        setSecond('');
-      }, 4000);
+  const getRemainingTime = () => {
+    const currentTime = new Date();
+    let countDownTime = new Date(time);
+
+    const difference = countDownTime.getTime() - currentTime.getTime();
+    let hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    let minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+    let seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+    if (hours > 0) return `${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
+    if (minutes > 0) return `${pad(minutes)}:${pad(seconds)}`;
+    if (seconds >= 0) return `${pad(minutes)}:${pad(seconds)}`;
+  };
+
+  const onSetMins = (e) => {
+    setMins(e.target.value);
+  };
+
+  const onStartCountdown = (e) => {
+    if (!/[0-9]+/.test(mins)) {
+      alert('You need to set break time');
+      return;
     }
-  }, [count]);
+    let countDownTime = new Date();
+    countDownTime.setTime(countDownTime.getTime() + mins * 60 * 1000);
+    setTime(countDownTime.getTime());
+    setCountingDown(true);
+  };
 
-  const timer = `${minute}:${second}`;
+  const pad = (n) => {
+    return n > 9 ? n : '0' + n;
+  };
 
   return (
     <BreakContainer>
       <div className="breakTimeContainer">
         <div className="timeLeft">
           <h3 className="label">Break:</h3>
-          <input className="breakeInput" type="number" placeholder="15" onChange={onChange} value={input} />
-          <button className="breakBtn" onClick={handleOnClick}>
+          <input className="breakeInput" type="number" placeholder="15" onChange={onSetMins} />
+          <button className="breakBtn" onClick={onStartCountdown}>
             Set Break
           </button>
         </div>
         <div className="timeRight">
-          <h3 className="breakTime">{timer}</h3>
+          <h3 className="breakTime">{remainingTime}</h3>
         </div>
       </div>
     </BreakContainer>

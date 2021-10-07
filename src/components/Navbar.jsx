@@ -30,21 +30,19 @@ export const Navbar = () => {
 const NavContainer = styled.div`
   .nav {
     background-color: #2e2e2e;
-    position: fixed;
-    z-index: 99;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 6rem;
     color: #5a5959;
-    box-shadow: -1px -1px 2px #aaaaaa;
+    padding: 1rem;
+    border-radius: 0px 0px 5px 5px;
+    @media screen and (max-width: 768px) {
+      border-radius: 0px;
+    }
   }
   .navList {
     display: flex;
     justify-content: space-around;
     list-style: none;
-    font-size: 1.5rem;
   }
+
   .menuCont {
     display: flex;
     justify-content: center;
