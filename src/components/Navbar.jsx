@@ -10,7 +10,7 @@ export const Navbar = () => {
       <nav className="nav">
         <ul className="navList">
           <div className="menuCont">
-            <NavLink exact to="/timer" activeClassName="active">
+            <NavLink exact to="/" activeClassName="active">
               <RiTimerLine className="icons timer" />
               <p>Timer</p>
             </NavLink>

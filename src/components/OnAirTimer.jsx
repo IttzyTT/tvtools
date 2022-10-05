@@ -106,6 +106,7 @@ const TimerContainer = styled.div`
     height: 4.6rem;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 0rem 0.5rem;
     border-bottom: 1px solid #b1b0b0b3;
   }

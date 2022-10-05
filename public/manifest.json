@@ -1,6 +1,12 @@
 {
   "short_name": "TV Tools",
   "name": "TV Tools",
+  "start_url": "/index.html",
+  "scope": "/",
+  "display": "standalone",
+  "theme_color": "#3d4650",
+  "background_color": "#3d4650",
+  "orientation": "portrait-primary",
   "icons": [
     {
       "src": "/android-chrome-192x192.png",
@@ -30,9 +36,5 @@
       "type": "image/png",
       "sizes": "512x512"
     }
-  ],
-  "start_url": "/index.html/timer",
-  "display": "standalone",
-  "theme_color": "#3d4650",
-  "background_color": "#3d4650"
+  ]
 }

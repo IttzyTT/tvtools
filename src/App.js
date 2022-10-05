@@ -13,7 +13,7 @@ function App() {
         <div className="mainContainer">
           <TopClock />
           <Switch>
-            <Route exact path="/timer" component={Timer} />
+            <Route exact path="/" component={Timer} />
             <Route path="/metronome" component={Metronome} />
           </Switch>
           <Navbar />
